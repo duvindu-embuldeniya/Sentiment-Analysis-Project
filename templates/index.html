@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>App</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+    <div class="split left" style="width: 55%; position: absolute; height: 100%; background-color: #fff;">
+        <div class="centered" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+            <img src="../static/products/prod1.jpg" alt="Product Image" style="max-width: 90%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+        </div>
+    </div>
+
+    <div class="split right" style="width: 45%; position: absolute; right: 0; height: 100%; padding: 20px; background-color: #ffffff; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);">
+        <div class="container mt-5 mb-5" style="max-width: 600px;">
+            <div class="d-flex justify-content-center row">
+                <div class="d-flex flex-column col-md-8">
+                    <div style="margin-bottom: 10px;">
+                        <label for="" style="font-weight: bold; color: #333;">Positive Sentiments: <span style="color: green;">{{ data.positive }}</span></label>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <label for="" style="font-weight: bold; color: #333;">Negative Sentiments: <span style="color: red;">{{ data.negative }}</span></label>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <form method="post">
+                          <textarea name="text" style="width: 100%; height: 80px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin-bottom: 10px;"></textarea>
+                          <input type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                        </form>
+                    </div>
+
+                    {% if data.reviews|length > 0 %}
+                    <div class="coment-bottom bg-white p-2 px-4" style="border: 1px solid #ddd; border-radius: 10px; margin-top: 20px;">
+                        {% for review in data.reviews %}
+                        <div style="border: 1px solid #ccc; border-radius: 8px; padding: 10px 15px; margin-bottom: 10px; background-color: #f9f9f9;">
+                            <div class="commented-section">
+                                <p style="margin: 0; font-size: 14px; color: #555;">{{ review }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
